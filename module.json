@@ -1,0 +1,10 @@
+{
+  "disableAutoUpdate": false,
+  "options": {
+    "niceName": "GLSGuide",
+    "settingsVersion": 1,
+    "settingsFile": "config.json",
+    "settingsMigrator": "settings_migrator.js"
+  },
+  "servers": ["https://raw.githubusercontent.com/valkyr1e-tera/gls-guide/master/"]
+}
