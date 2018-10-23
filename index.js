@@ -2,39 +2,31 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
   let boss = null
   let power = false
   let level = 0
-  
+
   mod.command.add('gls', () => {
-      mod.settings.enabled = !mod.settings.enabled
-      mod.command.message(mod.settings.enabled ? 'enabled' : 'disabled')
+    mod.settings.enabled = !mod.settings.enabled
+    mod.command.message(mod.settings.enabled ? 'enabled' : 'disabled')
   })
 
   function sendMessage(msg) {
-    switch (mod.settings.notification_mode) {
-      case 'flash':
-        mod.send('S_DUNGEON_EVENT_MESSAGE', 2, {
-          type: 70,
-          chat: false,
-          channel: 0,
-          message: msg
-        })
-        break
-      case 'chat':
-        mod.send('S_CHAT', 1, {
-          channel: 21, //21 = p-notice, 1 = party
-          authorName: mod.options.niceName,
-          message: msg
-        })
-        break
-    }
+    mod.send('S_DUNGEON_EVENT_MESSAGE', 2, {
+      type: 70,
+      chat: false,
+      channel: 0,
+      message: msg
+    })
+  }
+  function sendPartyNotice(msg) {
+    mod.send('S_CHAT', 1, {
+      channel: 21, //21 = p-notice, 1 = party
+      authorName: mod.options.niceName,
+      message: msg
+    })
   }
 
-  function reset() {
-    boss = null
+  mod.game.me.on('change_zone', () => {
     power = false
-    level = 0
-  }
-
-  mod.game.me.on('change_zone', reset)
+  })
 
   mod.hook('S_BOSS_GAGE_INFO', 3, event => {
     if (!mod.settings.enabled)
@@ -46,7 +38,7 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
     }
 
     if (boss && boss.curHp <= 0)
-      reset()
+      boss = null
   })
 
   mod.hook('S_ACTION_STAGE', 8, event => {
@@ -57,48 +49,47 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
     switch (boss.templateId) {
       case 1000:
         switch (skillid) {
-          case 309:
+          case 1309:
             sendMessage('1 flower')
             break
-          case 310:
+          case 1310:
             sendMessage('2 flowers')
             break
-          case 311:
-            sendMessage('3 flowers')
-            break
-          case 312:
+          case 1312:
             sendMessage('Golden flower')
             break
         }
         break
-    
+
       case 2000:
         switch (skillid) {
-          case 301:
-            sendMessage('IN -> OUT')
-            break
-          case 302:
+          case 1301:
             sendMessage('OUT -> IN')
+            break
+          case 1302:
+            sendMessage('IN -> OUT')
             break
         }
         break
-    
+
       case 3000:
         if (boss.huntingZoneId === 982) { // Hard Mode
           switch (skillid) {
-            case 300: // first awakening
+            case 1300: // first awakening
               power = true
               level = 0
               break
-            case 360: // electric discharge
+            case 1360: // electric discharge
               level = 0
+              sendMessage('Electric Discharge')
               break
-            case 399: // second awakening
+            case 1399: // second awakening
               level = 0
               break
           }
+
           if (power) {
-            switch (skillid) {
+            switch (skillid % 1000) {
               case 118:
                 power = false
                 setTimeout(() => {
@@ -118,6 +109,7 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
               case 215:
                 level++
                 sendMessage(String(level))
+                sendPartyNotice(String(level))
             }
           }
         }
