@@ -2,7 +2,7 @@
 	"files": {
 		"index.js": "55a8467dfef1d300ff716440a7a810509eb74d44fc2c82d74c5d9d786907a32f",
 		"module.json": "4fbb84f22ee3c8aa2dc784453c69a7a1694c3fe268664b905f62d017e27cb394",
-		"settings_migrator.js": "1e39a7d93150bdb2b5e354064a114b23c3c292e23c0ccc6dcc910e448e5af185"
+		"settings_migrator.js": "8358ba86b9b4ca2d86fe93997b9bd81cc6d67dfbd5c2919d6c55b2fe2eff4391"
 	},
 	"defs": {
 		"S_ACTION_STAGE": 8,

@@ -1,8 +1,7 @@
 "use strict"
 
 const DefaultSettings = {
-  "enabled": true,
-  "notification_mode": "flash" //chat, flash
+  "enabled": true
 }
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings) {
