@@ -3,9 +3,15 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
   let power = false
   let level = 0
 
-  mod.command.add('gls', () => {
-    mod.settings.enabled = !mod.settings.enabled
-    mod.command.message(mod.settings.enabled ? 'enabled' : 'disabled')
+  mod.command.add('gls', {
+    $default() {
+      mod.settings.enabled = !mod.settings.enabled
+      mod.command.message(mod.settings.enabled ? 'enabled' : 'disabled')
+    },
+    party() {
+      mod.settings.sendToParty = !mod.settings.sendToParty
+      mod.command.message(mod.settings.sendToParty ? 'Messages will be sent to the party.' : 'Only you will see messages.')
+    }
   })
 
   function sendMessage(msg) {
@@ -17,11 +23,18 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
     })
   }
   function sendPartyNotice(msg) {
-    mod.send('S_CHAT', 1, {
-      channel: 21, //21 = p-notice, 1 = party
-      authorName: mod.options.niceName,
-      message: msg
-    })
+    if (mod.settings.sendToParty) {
+      mod.send('C_CHAT', 1, {
+        channel: 1,
+        message: msg
+      })
+    } else {
+      mod.send('S_CHAT', 1, {
+        channel: 21, //21 = p-notice, 1 = party
+        authorName: mod.options.niceName,
+        message: msg
+      })
+    }
   }
 
   mod.game.me.on('change_zone', () => {

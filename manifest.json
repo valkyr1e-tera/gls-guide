@@ -1,10 +1,11 @@
 {
 	"files": {
-		"index.js": "55a8467dfef1d300ff716440a7a810509eb74d44fc2c82d74c5d9d786907a32f",
+		"index.js": "d5c78783612a0422ca5bf25745e96152f6d31ad2fa3975885f7deeef89ee75ef",
 		"module.json": "4fbb84f22ee3c8aa2dc784453c69a7a1694c3fe268664b905f62d017e27cb394",
-		"settings_migrator.js": "8358ba86b9b4ca2d86fe93997b9bd81cc6d67dfbd5c2919d6c55b2fe2eff4391"
+		"settings_migrator.js": "058810cc04360cb6cf11a695d43ed3f16539f0fa3ca099855cd09704d1269ef0"
 	},
 	"defs": {
+		"C_CHAT": 1,
 		"S_ACTION_STAGE": 8,
 		"S_BOSS_GAGE_INFO": 3,
 		"S_CHAT": 1,

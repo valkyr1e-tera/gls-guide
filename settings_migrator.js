@@ -1,7 +1,8 @@
 "use strict"
 
 const DefaultSettings = {
-  "enabled": true
+  "enabled": true,
+  "sendToParty": false
 }
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings) {
