@@ -24,10 +24,12 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
   }
   function sendPartyNotice(msg) {
     if (mod.settings.sendToParty) {
-      mod.send('C_CHAT', 1, {
-        channel: 1,
-        message: msg
-      })
+      setTimeout(() => {
+        mod.send('C_CHAT', 1, {
+          channel: 1,
+          message: msg
+        })
+      }, 2000)
     } else {
       mod.send('S_CHAT', 1, {
         channel: 21, //21 = p-notice, 1 = party
