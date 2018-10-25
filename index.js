@@ -79,10 +79,10 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
       case 2000:
         switch (skillid) {
           case 1301:
-            sendMessage('OUT -> IN')
+            sendMessage('↓ Get OUT & dodge')
             break
           case 1302:
-            sendMessage('IN -> OUT')
+            sendMessage('↑ Get IN & dodge')
             break
         }
         break
@@ -96,7 +96,7 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
               break
             case 1360: // electric discharge
               level = 0
-              sendMessage('Electric Discharge')
+              sendMessage('Lightning!')
               break
             case 1399: // second awakening
               level = 0
