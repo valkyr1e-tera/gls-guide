@@ -8,5 +8,7 @@ Call out mechanics to yourself or the party.
 
 ## Call out messages:
 Nedra: Numbers of Flowers
+ 
 Ptakum: Getting in or out
-Kylos: Numbers of Stack Lightning
+
+Kylos: Numbers of Stack Lightning  
