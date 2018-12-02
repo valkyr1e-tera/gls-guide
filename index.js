@@ -57,7 +57,7 @@ module.exports = function GrottoOfLostSoulsGuide(mod) {
   })
 
   mod.hook('S_ACTION_STAGE', 8, event => {
-    if (!mod.settings.enabled || !boss || !event.gameId.equals(boss.id))
+    if (!mod.settings.enabled || !boss || event.gameId !== boss.id)
       return
 
     const skillid = event.skill.id
