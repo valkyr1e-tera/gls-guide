@@ -1,5 +1,9 @@
 {
   "disableAutoUpdate": false,
+	"name": "gld-guide",
+	"author": "valkyr1e",
+	"description": "Guide of Grotto of Lost Souls",
+	"version": "1.0",
   "options": {
     "niceName": "GLSGuide",
     "settingsVersion": 1,
